@@ -49,7 +49,7 @@ public class TCPSingleton extends Thread {
     public void run() {
         try {
             Log.e(">", "Esperando conexion");
-            socket = new Socket("192.168.0.4", 5000);
+            socket = new Socket("192.168.0.5", 5000);
             Log.e(">", "Conectamos con el server");
 
             //Input y Output
@@ -60,8 +60,6 @@ public class TCPSingleton extends Thread {
             writer = new BufferedWriter(new OutputStreamWriter(os));
             reader = new BufferedReader(new InputStreamReader(is));
 
-            recibir();
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,25 +67,6 @@ public class TCPSingleton extends Thread {
 
     }
 
-
-    //Metodo para recibir los mensajes
-    public void recibir() {
-
-        while (true) {
-            try {
-
-                String line = reader.readLine();
-
-
-                if (line != null) {
-                    observer.OnMessage(line);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
 
     //metodo para enviar mensajes
